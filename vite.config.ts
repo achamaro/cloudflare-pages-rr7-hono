@@ -5,6 +5,7 @@ import serverAdapter from "hono-react-router-adapter/vite";
 import tailwindcss from "tailwindcss";
 import { defineConfig } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
+import { getLoadContext } from "./load-context";
 
 export default defineConfig((_) => ({
 	css: {
@@ -34,6 +35,7 @@ export default defineConfig((_) => ({
 		serverAdapter({
 			adapter,
 			entry: "server/index.ts",
+			getLoadContext,
 		}),
 		tsconfigPaths(),
 	],
