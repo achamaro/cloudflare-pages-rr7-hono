@@ -1,5 +1,13 @@
-import { Form } from "react-router";
+import { Form, redirect } from "react-router";
 import type { Route } from "./+types/private";
+
+export async function action({ context: { sessionCookie } }: Route.ActionArgs) {
+	return redirect("/login", {
+		headers: {
+			"Set-Cookie": await sessionCookie.serialize("", { maxAge: 1 }),
+		},
+	}) as Response;
+}
 
 export async function loader({ context }: Route.LoaderArgs) {
 	return context.hono.context.get("userName");

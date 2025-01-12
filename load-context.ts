@@ -20,7 +20,7 @@ declare module "react-router" {
 		};
 		isProduction: boolean;
 		sessionCookie: {
-			serialize: (value: string) => Promise<string>;
+			serialize: ReturnType<typeof SessionCookie>["serialize"];
 		};
 	}
 }
@@ -44,11 +44,11 @@ export const getLoadContext: GetLoadContext = ({ context }) => {
 		...context,
 		isProduction,
 		sessionCookie: {
-			serialize: async (value: string) => {
+			serialize: async (value, options) => {
 				return await SessionCookie(
 					env.SESSION_COOKIE_SECRETS,
 					isProduction,
-				).serialize(value);
+				).serialize(value, options);
 			},
 		},
 	};
