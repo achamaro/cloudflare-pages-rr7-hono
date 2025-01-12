@@ -5,7 +5,9 @@
     "app/**/*",
     "app/**/.server/**/*",
     "app/**/.client/**/*",
-    "server/**/*"
+    "server/**/*",
+    "load-context.ts",
+    "worker-configuration.d.ts"
   ],
   "compilerOptions": {
     "composite": true,
